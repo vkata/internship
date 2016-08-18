@@ -32,15 +32,15 @@ function mainFunction() {
 			//adding new person
 			console.log('You chose ' + line + ' to add a new person.\n');
 			console.log('Person\'s information (name, gender, age)');
-			readFromUser();
+		//	readFromUser();
 		} else if (line == 2) {
 			console.log('You chose  ' + line + ' - sort by name.\n');
-			sorting(persList, 'name');
+			bubbleSort(persList, 'name');
 			console.log(persList);
 			console.log('Options: (1) Add new person, (2) Sort by name, (3) Sort by age, (4) Exit\n ');
 		} else if (line == 3) {
 			console.log('You chose  ' + line + ' - sort by age.\n');
-			sorting(persList, 'age');
+			bubbleSort(persList, 'age');
 			console.log(persList);
 			console.log('Options: (1) Add new person, (2) Sort by name, (3) Sort by age, (4) Exit\n ');
 		}
@@ -61,6 +61,25 @@ function sorting(persList, sortBy) {
 		}
 		return 0;
 	});
+}
+
+function bubbleSort(persList, sortBy) {
+   let n = persList.length;
+   console.log(n);
+    do {
+     swapped = false;
+     for (let i = 1; i <= n-1; i++) {
+       console.log(persList[i-1][sortBy]);
+       console.log(persList[i][sortBy]);
+       if (persList[i-1][sortBy] > persList[i][sortBy]) {
+         let temp = persList[i][sortBy];
+         console.log(temp);
+         persList[i][sortBy] = persList[i-1][sortBy];
+         persList[i-1][sortBy] = temp;
+         swapped = true;
+       }
+     }
+   } while (!swapped)
 }
 
 mainFunction();
