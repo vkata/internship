@@ -51,7 +51,7 @@ function mainFunction() {
 }
 
 function sorting(persList, sortBy) {
-	console.log("zzzz");
+	//console.log("zzzz");
 	persList.sort(function(a, b) {
 		if (a[sortBy] > b[sortBy]) {
 			return 1;
@@ -64,22 +64,24 @@ function sorting(persList, sortBy) {
 }
 
 function bubbleSort(persList, sortBy) {
-   let n = persList.length;
+	"use strict";
+   var n = persList.length;
    console.log(n);
-    do {
-     swapped = false;
-     for (let i = 1; i <= n-1; i++) {
-       console.log(persList[i-1][sortBy]);
-       console.log(persList[i][sortBy]);
-       if (persList[i-1][sortBy] > persList[i][sortBy]) {
-         let temp = persList[i][sortBy];
-         console.log(temp);
-         persList[i][sortBy] = persList[i-1][sortBy];
-         persList[i-1][sortBy] = temp;
-         swapped = true;
-       }
-     }
-   } while (!swapped)
+    //do {
+		//for (let i = 0; i < n-1; i++) {
+		let i = 0;
+		 do {
+		 		var swapped = false;
+     		for (let j = 0; j < n-1; j++) {
+       		if (persList[j][sortBy] > persList[j+1][sortBy]) {
+         		let temp = persList[j];
+         		persList[j] = persList[j+1];
+         		persList[j+1] = temp;
+         		swapped = true;
+       		}
+     		}
+				i++;
+   } while (!swapped && i<n)
 }
 
 mainFunction();
