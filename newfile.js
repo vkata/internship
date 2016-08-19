@@ -65,13 +65,11 @@ function sorting(persList, sortBy) {
 
 function bubbleSort(persList, sortBy) {
 	"use strict";
-   var n = persList.length;
+   let n = persList.length;
+	 let swapped;
    console.log(n);
-    //do {
-		//for (let i = 0; i < n-1; i++) {
-		let i = 0;
 		 do {
-		 		var swapped = false;
+		 		swapped = false;
      		for (let j = 0; j < n-1; j++) {
        		if (persList[j][sortBy] > persList[j+1][sortBy]) {
          		let temp = persList[j];
@@ -80,8 +78,8 @@ function bubbleSort(persList, sortBy) {
          		swapped = true;
        		}
      		}
-				i++;
-   } while (!swapped && i<n)
+
+   } while (swapped)
 }
 
 mainFunction();
