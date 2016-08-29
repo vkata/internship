@@ -107,3 +107,8 @@ th:last-child {
   width: 200px;
   padding: 0px;
 }
+
+#usererr, #fullnameerr, #emailerr, #generr, #passerr {
+  color: red;
+  visibility: hidden;
+}
