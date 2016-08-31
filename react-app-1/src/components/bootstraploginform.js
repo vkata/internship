@@ -79,7 +79,7 @@ class BootstrapLoginForm extends React.Component {
           <HelpBlock> </HelpBlock>
         </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleLogin}>Save</Button>
+        <Button bsStyle="primary" onClick={this.handleLogin}>Login</Button>
       </form>
     );
   }

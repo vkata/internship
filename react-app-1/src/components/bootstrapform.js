@@ -55,6 +55,25 @@ class BootstrapForm extends React.Component {
       if (personValidator.validate(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
       {
         userRepository.save(p);
+        this.setState({
+          password2: ''
+        });
+        this.setState({
+          password: ''
+        });
+        this.setState({
+          user: ''
+        });
+        this.setState({
+          fullname: ''
+        });
+        this.setState({
+          email: ''
+        });
+        this.setState({
+          gender: ''
+        });
+
       }
     }
     else {
@@ -161,7 +180,7 @@ class BootstrapForm extends React.Component {
           </FormControl>
         </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleSave}>Save</Button>
+        <Button bsStyle="primary" onClick={this.handleSave}>Sign Up</Button>
       </form>
     );
   }
