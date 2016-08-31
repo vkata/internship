@@ -11,7 +11,6 @@ class UserRepository {
   }
 
   save(user) {
-    console.log(user.getUsername() + " " + user.getFullname() + " " + user.getEmail());
     this.list.push(user);
     // this.bclient.write(
     //   {channel: 'users', resource: 'username', data: username},
@@ -27,7 +26,6 @@ class UserRepository {
   listAllUsers() {
     return this.list;
   }
-
 }
 
 export default new UserRepository();

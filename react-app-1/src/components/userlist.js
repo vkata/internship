@@ -1,5 +1,6 @@
 import React from 'react';
 import userRepository from '../core/repositories/userrepository';
+import {ListGroup, ListGroupItem} from 'react-bootstrap'
 
 class UserList extends React.Component {
 
@@ -14,9 +15,9 @@ class UserList extends React.Component {
 
       for (let i = 0; i < this.userList.length; i++) {
         userList.push(
-            <ListItem
-              user = {this.userList[i]}
-            />
+            <ListGroupItem>
+              {this.userList[i].fullname}
+            </ListGroupItem>
         );
       }
 
@@ -25,22 +26,11 @@ class UserList extends React.Component {
       return (
         <div id="userlist">
         <p> List of users </p>
-          <ul>
+          <ListGroup>
             {userList}
-          </ul>
+          </ListGroup>
         </div>
       );
-  }
-}
-
-class ListItem extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (<li>{this.props.user.username}</li>);
   }
 }
 

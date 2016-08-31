@@ -24,6 +24,15 @@ class WSRepository {
  listAllStations() {
    return this.list;
  }
+
+ getStationByName(name) {
+   for (let i = 0; i<this.list.length; i++) {
+     if (this.list[i].getName() == name) {
+       console.log("getting by name: " +this.list[i].getName());
+       return this.list[i];
+     }
+   }
+ }
 }
 
 export default new WSRepository();

@@ -2,6 +2,7 @@ import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
 import wsRepository from '../core/repositories/wsrepository';
 import WeatherStation from '../weatherstation'
+import userRepository from '../core/repositories/userrepository';
 
 class AddStationForm extends React.Component {
   constructor(props) {
@@ -11,12 +12,12 @@ class AddStationForm extends React.Component {
         user: '',
         station: ''
       }
-
       this.handleChange = this.handleChange.bind(this);
       this.handleAdd = this.handleAdd.bind(this);
   }
 
   handleChange(e) {
+    console.log(e.target.id);
     if (e.target.id == "user") {
       this.setState({
         user: e.target.value
@@ -29,8 +30,6 @@ class AddStationForm extends React.Component {
   }
 
   handleAdd() {
-    console.log(this.state.user + ' ' + this.state.station);
-
       let ws = new WeatherStation(this.state.user, this.state.station);
       wsRepository.add(ws);
       this.setState({
@@ -42,19 +41,27 @@ class AddStationForm extends React.Component {
   }
 
   render() {
+    this.userList = userRepository.listAllUsers();
+    let list = [];
+
+     for (let i = 0; i < this.userList.length; i++) {
+       list.push(
+           <option>
+             {this.userList[i].username}
+           </option>
+       );
+     }
+
     return (
       <form>
         <FormGroup
           controlId="user"
         >
           <ControlLabel> Username of the creator: </ControlLabel>
-          <FormControl
-            type="text"
-            value={this.state.user}
-            placeholder="Your username"
-            onChange={this.handleChange}
-          />
-          <FormControl.Feedback />
+          <FormControl componentClass="select" placeholder="select">
+            {list}
+          </FormControl>
+          {/* <UserSelect onChange={this.handleChange}/> */}
           <HelpBlock> </HelpBlock>
         </FormGroup>
 

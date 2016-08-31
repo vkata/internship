@@ -1,11 +1,6 @@
 import './App.css'
 
 import React from 'react'
-import Photo from './components/photo'
-import Form from './components/form'
-import Table from './components/table'
-import List from './components/list'
-import NewForm from './components/newform'
 import BootstrapForm from './components/bootstrapform'
 import BootstrapLoginForm from './components/bootstraploginform'
 import {Nav, NavItem, Tabs, Tab} from 'react-bootstrap'

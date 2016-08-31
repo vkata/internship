@@ -3,7 +3,7 @@ class WeatherStation {
     constructor(user, name) {
         this.user = user;
         this.name = name;
-        this.temp = [];
+        this.temp = [15,23,19,18,20,21,17,19,23,25];
     }
 
     getName() {
