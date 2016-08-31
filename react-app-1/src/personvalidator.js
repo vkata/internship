@@ -2,57 +2,55 @@
 
 class PersonValidator {
 
-    constructor(pers) {
-      this.pers = pers;
-    }
-
-    checkUsername() {
-      if (/^[a-zA-Z0-9]+$/g.test(this.pers.getUsername())) {
-        return true;
+    checkUsername(userName) {
+      if (/^[a-zA-Z0-9]+$/g.test(userName)) {
+        return 'success';
       }
-      else return false;
+      else return 'error';
     }
 
-   checkFullame() {
-     if (/^[A-Z]{1}[a-z]+ [A-Z][a-z]+$/g.test(this.pers.getFullname())) {
-       return true;
+   checkFullname(fullName) {
+     if (/^[A-Z]{1}[a-z]+ [A-Z][a-z]+$/g.test(fullName)) {
+       return 'success';
      }
-     else return false;
+     else return 'error';
    }
 
-   checkEmail() {
-     if (/^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-z]+$/g.test(this.pers.getEmail())) {
-       return true;
+   checkEmail(email) {
+     if (/^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-z]+$/g.test(email)) {
+       return 'success';
      }
-     else return false;
+     else return 'error';
    }
 
-   checkPassword() {
-     if (/^[a-zA-Z0-9]+$/g.test(this.pers.getPassword())) {
-       return true;
-     }
-     else return false;
+   checkPassword(pass) {
+       if (/^[a-zA-Z0-9]{7}[a-zA-Z0-9]*$/g.test(pass) ) {
+         return 'success';
+       }
+       else {
+         return 'error';
+       }
    }
 
-   checkGender() {
-     if (/^female$/g.test(this.pers.getGender())) {
-       return true;
-     } else if (/^male$/g.test(this.pers.getGender())) {
-       return true;
-     } else if (/^not specified$/g.test(this.pers.getGender())) {
-       return true;
+   checkGender(gen) {
+     if (/^female$/g.test(gen)) {
+       return 'success';
+     } else if (/^male$/g.test(gen)) {
+       return 'success';
+     } else if (/^not specified$/g.test(gen)) {
+       return 'success';
      }
-     else return false;
+     else return 'error';
    }
 
-   validate() {
-     if (this.checkUsername() && this.checkFullame()
-      && this.checkEmail() && this.checkPassword()
-        && this.checkGender()) {
+   validate(user, fullname, password, email, gender) {
+     if (this.checkUsername(user) && this.checkFullname(fullname)
+      && this.checkEmail(email) && this.checkPassword(password)
+        && this.checkGender(gender)) {
           return true;
         }
      else return false;
    }
 }
 
-export default PersonValidator;
+export default new PersonValidator();
