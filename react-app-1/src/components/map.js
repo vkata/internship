@@ -17,7 +17,7 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    console.log("Start: " + START.lat);
+    // console.log("Start: " + START.lat);
     this.map = new google.maps.Map(this.refs.map, {
       center: START,
       zoom: 8
@@ -36,7 +36,7 @@ class Map extends React.Component {
       lng: parseFloat(this.props.lng)
     });
 
-    console.log("newstate: " + typeof(this.state.lat));
+    // console.log("newstate: " + typeof(this.state.lat));
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state,
       zoom: 6
