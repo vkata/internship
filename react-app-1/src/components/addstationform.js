@@ -3,6 +3,7 @@ import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 're
 import wsRepository from '../core/repositories/wsrepository';
 import WeatherStation from '../weatherstation'
 import userRepository from '../core/repositories/userrepository';
+import coordValidator from '../coordvalidator';
 
 class AddStationForm extends React.Component {
   constructor(props) {
@@ -10,7 +11,9 @@ class AddStationForm extends React.Component {
 
       this.state = {
         user: '',
-        station: ''
+        station: '',
+        lat: 0,
+        lng: 0
       }
       this.handleChange = this.handleChange.bind(this);
       this.handleAdd = this.handleAdd.bind(this);
@@ -26,11 +29,19 @@ class AddStationForm extends React.Component {
       this.setState({
         station: e.target.value
       })
+    } else if (e.target.id == "lat") {
+      this.setState({
+        lat: e.target.value
+      })
+    } else if (e.target.id == "lng") {
+      this.setState({
+        lng: e.target.value
+      })
     }
   }
 
   handleAdd() {
-      let ws = new WeatherStation(this.state.user, this.state.station);
+      let ws = new WeatherStation(this.state.user, this.state.station, this.state.lat, this.state.lng);
       wsRepository.add(ws);
       this.setState({
         user: ''
@@ -38,6 +49,12 @@ class AddStationForm extends React.Component {
       this.setState({
         station: ''
       });
+      this.setState({
+        lat: 0
+      });
+      this.setState({
+        lng: 0
+      })
   }
 
   render() {
@@ -46,7 +63,7 @@ class AddStationForm extends React.Component {
 
      for (let i = 0; i < this.userList.length; i++) {
        list.push(
-           <option>
+           <option key={i}>
              {this.userList[i].username}
            </option>
        );
@@ -73,6 +90,36 @@ class AddStationForm extends React.Component {
             type="text"
             value={this.state.station}
             placeholder="Station name"
+            onChange={this.handleChange}
+          />
+          <FormControl.Feedback />
+          <HelpBlock> </HelpBlock>
+        </FormGroup>
+
+        <FormGroup
+          controlId="lat"
+          validationState={coordValidator.checkCoord(this.state.lat)}
+        >
+          <ControlLabel> lat: </ControlLabel>
+          <FormControl
+            type="number"
+            value={this.state.lat}
+            placeholder="lat"
+            onChange={this.handleChange}
+          />
+          <FormControl.Feedback />
+          <HelpBlock> </HelpBlock>
+        </FormGroup>
+
+        <FormGroup
+          controlId="lng"
+          validationState={coordValidator.checkCoord(this.state.lng)}
+        >
+          <ControlLabel> lng: </ControlLabel>
+          <FormControl
+            type="number"
+            value={this.state.lng}
+            placeholder="lng"
             onChange={this.handleChange}
           />
           <FormControl.Feedback />

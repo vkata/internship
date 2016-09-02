@@ -15,7 +15,7 @@ class UserList extends React.Component {
 
       for (let i = 0; i < this.userList.length; i++) {
         userList.push(
-            <ListGroupItem>
+            <ListGroupItem key={i}>
               {this.userList[i].fullname}
             </ListGroupItem>
         );

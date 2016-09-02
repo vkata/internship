@@ -13,11 +13,13 @@
   },
   "dependencies": {
     "beebotte": "^0.8.0",
+    "google-maps-react": "^1.0.18",
     "highcharts": "^4.2.6",
     "react": "^15.3.1",
     "react-bootstrap": "^0.30.3",
     "react-bootstrap-select": "^0.14.0",
     "react-dom": "^15.3.1",
+    "react-google-maps": "^4.11.0",
     "react-highcharts": "^10.0.0"
   },
   "devDependencies": {

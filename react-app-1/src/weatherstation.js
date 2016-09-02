@@ -1,9 +1,11 @@
 class WeatherStation {
 
-    constructor(user, name) {
+    constructor(user, name, lat, lng) {
         this.user = user;
         this.name = name;
         this.temp = [15,23,19,18,20,21,17,19,23,25];
+        this.lat = lat;
+        this.lng = lng;
     }
 
     getName() {
@@ -24,6 +26,14 @@ class WeatherStation {
 
     getTempList() {
       return this.temp;
+    }
+
+    getLat() {
+      return this.lat;
+    }
+
+    getLng() {
+      return this.lng;
     }
 }
 
