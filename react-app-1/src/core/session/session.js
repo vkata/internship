@@ -1,6 +1,14 @@
+import React from 'react'
+
 class Session {
-  constructor(usr) {
+  constructor() {
     this.currentuser = "";
+  }
+
+  isLoggedIn() {
+      if (this.currentuser != "")
+        return true
+      else return false;
   }
 
   setCurrentUser(usr) {
@@ -12,4 +20,4 @@ class Session {
   }
 }
 
-export default Session;
+export default new Session();

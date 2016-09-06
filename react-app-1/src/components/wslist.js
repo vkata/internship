@@ -13,15 +13,22 @@ let config = {
         }
 };
 
+let config2 = {
+  title: {
+            text: "Weather Station"
+        }
+};
+
 class WsList extends React.Component {
 
    constructor(props) {
      super(props);
      this.state = {
        config: config,
+       config2: config2,
        lat: 46.317399,
        lng: 24.745900,
-       list: [],
+       list: wsRepository.getDataForPageNr(1, 8),
        page: 1
      }
 
@@ -43,7 +50,7 @@ class WsList extends React.Component {
    getSelectedPart(p) {
 
      this.setState({
-       list: wsRepository.getDataForPageNr(p, 5)
+       list: wsRepository.getDataForPageNr(p, 8)
      });
    }
 
@@ -51,7 +58,7 @@ class WsList extends React.Component {
 
      config = {
        title: {
-                 text: e.target.id
+                 text: "Temperature at " + e.target.id
              },
        xAxis: {
                title: {
@@ -64,24 +71,43 @@ class WsList extends React.Component {
                  }
              },
        series: [{
-         data: [5,6,7]
+         data: []
        }]
      };
+     config2 = {
+       title: {
+                 text: "Humidity at: " + e.target.id
+             },
+       xAxis: {
+               title: {
+                   text: 'Time'
+                 }
+       },
+       yAxis: {
+                 title: {
+                     text: 'Humidity'
+                 }
+             },
+       series: [{
+         data: []
+       }]
+     };
+
      config.series[0].data = wsRepository.getStationByName(e.target.id).getTempList();
-     config.title.text = e.target.id;
+     config.title.text = "Temperature at " + e.target.id;
+
+     config2.series[0].data = wsRepository.getStationByName(e.target.id).getHumList();
+     config2.title.text = "Humidity at " + e.target.id;
 
      let lat = wsRepository.getStationByName(e.target.id).getLat();
      let lng = wsRepository.getStationByName(e.target.id).getLng();
 
-     console.log("this has to be saved: " + lat + " " + lng);
-
      this.setState({
        config: config,
+       config2: config2,
        lat: lat,
-       lng: lng
+       lng: lng,
      });
-
-     console.log("this IS saved: " + this.state.lat + " " + this.state.lng + "\n----------------");
 
      this.getSelectedPart(this.state.page);
    }
@@ -96,6 +122,7 @@ class WsList extends React.Component {
    }
 
    render() {
+
      let wsList = [];
 
       for (let i = 0; i < this.state.list.length; i++) {
@@ -106,8 +133,6 @@ class WsList extends React.Component {
         );
       }
 
-      // console.log(wsList);
-
       return (
         <div id="wslist">
         <br/>
@@ -115,11 +140,11 @@ class WsList extends React.Component {
           <Row>
 
           <Col sm={6} md={3}>
-            <Button onClick={this.populate}>Populate stations</Button>
+            <Button onClick={this.populate}> Populate stations </Button>
             <ListGroup>
               {wsList}
             </ListGroup>
-            <WSPagination handle={this.setPage}/>
+
           </Col>
           <Col sm={6} md={9}>
             <ReactHighcharts config={config} ref="chart"></ReactHighcharts>
@@ -127,27 +152,26 @@ class WsList extends React.Component {
           </Row>
           <Row>
           <Col sm={6} md={3}>
-            {/*  */}
+            <WSPagination handle={this.setPage}/>
           </Col>
           <Col sm={6} md={9}>
             <br/>
-            <Map lat={this.state.lat} lng={this.state.lng}/>
+            <ReactHighcharts config={config2} ref="chart"></ReactHighcharts>
+
           </Col>
           </Row>
-        </Grid>
+          <Row>
+            <Col sm={6} md={3}>
 
+            </Col>
+            <Col sm={6} md={9}>
+              <br/>
+              <Map lat={this.state.lat} lng={this.state.lng}/>
+            </Col>
+          </Row>
+        </Grid>
         </div>
       );
-  }
-}
-
-class ListItem extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (<li>{this.props.station.name}</li>);
   }
 }
 

@@ -1,13 +1,16 @@
 import React from 'react';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Form, Col, Pager} from 'react-bootstrap';
 import personValidator from '../personvalidator';
 import userRepository from '../core/repositories/userrepository';
 import Person from '../person'
+import { Router, Route, Link, browserHistory } from 'react-router'
+import session from '../core/session/session'
 
 class BootstrapLoginForm extends React.Component {
+
   constructor(props) {
       super(props);
-
+      session.setCurrentUser("");
       this.state = {
         user: '',
         password: ''
@@ -30,8 +33,13 @@ class BootstrapLoginForm extends React.Component {
   }
 
   handleLogin() {
-      if (userRepository.login(this.state.user, this.state.password)) {
-          alert("User wants to log in.");
+       if (userRepository.login(this.state.user, this.state.password)) {
+          session.setCurrentUser(this.state.user);
+
+          console.log("user is saved in session");
+
+          browserHistory.push('/dashboard');
+
       } else {
 
         console.log(userRepository.listAllUsers());
@@ -48,25 +56,25 @@ class BootstrapLoginForm extends React.Component {
 
   render() {
     return (
-      <form>
+      <Pager>
+      <Pager.Item>
+      <Form>
         <FormGroup
           controlId="user"
-          validationState={personValidator.checkUsername(this.state.user)}
+          // validationState={personValidator.checkUsername(this.state.user)}
         >
           <ControlLabel> Username: </ControlLabel>
           <FormControl
             type="text"
             value={this.state.user}
             placeholder="Your username"
-            onChange={this.handleChange}
-          />
+            onChange={this.handleChange}/>
           <FormControl.Feedback />
-          <HelpBlock> </HelpBlock>
         </FormGroup>
 
         <FormGroup
           controlId="password"
-          validationState={personValidator.checkPassword(this.state.password)}
+          // validationState={personValidator.checkPassword(this.state.password)}
         >
           <ControlLabel> Password: </ControlLabel>
           <FormControl
@@ -76,13 +84,16 @@ class BootstrapLoginForm extends React.Component {
             onChange={this.handleChange}
           />
           <FormControl.Feedback />
-          <HelpBlock> </HelpBlock>
-        </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleLogin}>Login</Button>
-      </form>
+        </FormGroup>
+          <Button bsStyle="primary" onClick={this.handleLogin}>Login</Button>
+          <Link to="/signup"> Sign Up </Link>
+       </Form>
+       </Pager.Item>
+       </Pager>
     );
   }
 }
+
 
 export default BootstrapLoginForm;

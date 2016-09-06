@@ -24,8 +24,8 @@ class WSPagination extends React.Component {
   render() {
 
     let itemsNr = wsRepository.howMany();
-    let pagesNr = Math.floor(wsRepository.howMany() / 5);
-    if (wsRepository.howMany() % 5 > 0) {
+    let pagesNr = Math.floor(wsRepository.howMany() / 8);
+    if (wsRepository.howMany() % 8 > 0) {
       pagesNr++;
     }
 

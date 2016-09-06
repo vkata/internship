@@ -1,22 +1,23 @@
 import React from 'react';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Pager} from 'react-bootstrap';
 import personValidator from '../personvalidator';
 import userRepository from '../core/repositories/userrepository';
 import Person from '../person'
+import { Router, Route, Link, browserHistory } from 'react-router'
 
 class BootstrapForm extends React.Component {
   constructor(props) {
       super(props);
 
       this.state = {
-        user: '',
+        user: this.props.user,
         fullname: '',
         email: '',
         gender: '',
         password: '',
         password2: ''
       }
-
+      console.log(this.props.user);
       this.handleChange = this.handleChange.bind(this);
       this.handleSave = this.handleSave.bind(this);
   }
@@ -50,46 +51,62 @@ class BootstrapForm extends React.Component {
   }
 
   handleSave() {
-    let p = new Person(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender);
-    if (this.state.password == this.state.password2) {
-      if (personValidator.validate(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
-      {
-        userRepository.save(p);
+    if (this.props.user == "") {
+      if (this.state.password == this.state.password2) {
+        if (personValidator.validate(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
+        {
+          //if it is a new user we have to save it
+          let p = new Person(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender);
+          console.log("save user");
+          userRepository.save(p);
+          this.setState({
+            password2: ''
+          });
+          this.setState({
+            password: ''
+          });
+          this.setState({
+            user: ''
+          });
+          this.setState({
+            fullname: ''
+          });
+          this.setState({
+            email: ''
+          });
+          this.setState({
+            gender: ''
+          });
+
+        }
+      }
+      else {
         this.setState({
           password2: ''
         });
         this.setState({
           password: ''
         });
-        this.setState({
-          user: ''
-        });
-        this.setState({
-          fullname: ''
-        });
-        this.setState({
-          email: ''
-        });
-        this.setState({
-          gender: ''
-        });
-
+        alert("Passwords do not match!");
       }
     }
+    //if it is an existing user we have to update user
     else {
-      this.setState({
-        password2: ''
-      });
-      this.setState({
-        password: ''
-      });
-      alert("Passwords do not match!");
+      if (this.state.password == this.state.password2) {
+        if (personValidator.validate(this.props.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
+        {
+          console.log("update user");
+          userRepository.updateUser(this.props.user, this.state.fullname, this.state.email, this.state.password, this.state.gender)
+        }
+      }
     }
   }
 
   render() {
     return (
       <form>
+      <Pager>
+      <Pager.Item>
         <FormGroup
           controlId="user"
           validationState={personValidator.checkUsername(this.state.user)}
@@ -100,10 +117,12 @@ class BootstrapForm extends React.Component {
             value={this.state.user}
             placeholder="Your username"
             onChange={this.handleChange}
+            disabled={this.props.user != ""}
           />
           <FormControl.Feedback />
           <HelpBlock> </HelpBlock>
         </FormGroup>
+
 
         <FormGroup
           controlId="fullname"
@@ -180,7 +199,12 @@ class BootstrapForm extends React.Component {
           </FormControl>
         </FormGroup>
 
-        <Button bsStyle="primary" onClick={this.handleSave}>Sign Up</Button>
+        <Button bsStyle="primary" onClick={this.handleSave}> Save </Button>
+
+        <Link to="/login" hidden={this.props.user != ""}> Back to Login </Link>
+        <Link to="/dashboard" hidden={this.props.user == ""}> Back to Dashboard </Link>
+      </Pager.Item>
+      </Pager>
       </form>
     );
   }

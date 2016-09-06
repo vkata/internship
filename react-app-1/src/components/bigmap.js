@@ -19,12 +19,9 @@ class BigMap extends React.Component {
       zoom: 6
     }
 
-    this.state = {
-      list: []
-    }
-
     this.onClick = this.onClick.bind(this);
     this.allStations = this.allStations.bind(this);
+
   }
 
   onClick() {
@@ -42,7 +39,6 @@ class BigMap extends React.Component {
     let list = wsRepository.listAllStations();
 
     for (let i = 0; i<list.length; i++) {
-      // console.log(list[i].getName());
       let pos = {
         lat: parseFloat(list[i].getLat()),
         lng: parseFloat(list[i].getLng())
@@ -53,13 +49,11 @@ class BigMap extends React.Component {
             map: this.bigmap,
             title: 'I\'m here!'
           });
-        // console.log('new marker added');
         this.bigmap.setCenter(this.marker[i].getPosition());
       }
   }
 
   componentDidMount() {
-
     this.bigmap = new google.maps.Map(this.refs.bigmap, {
       center: START,
       zoom: 3
@@ -70,7 +64,6 @@ class BigMap extends React.Component {
 
   render() {
 
-    
     const mapStyle = {
       height: 700,
       border: '1px solid black'

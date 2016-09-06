@@ -9,6 +9,7 @@ class ListPagination extends React.Component {
     this.state = {
       activePage: 1
     }
+    this.list = this.props.listLength;
     this.handleSelect = this.handleSelect.bind(this);
   }
 

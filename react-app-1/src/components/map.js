@@ -30,10 +30,10 @@ class Map extends React.Component {
         });
   }
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(nextProps) {
     this.setState({
-      lat: parseFloat(this.props.lat),
-      lng: parseFloat(this.props.lng)
+      lat: parseFloat(nextProps.lat),
+      lng: parseFloat(nextProps.lng)
     });
 
     // console.log("newstate: " + typeof(this.state.lat));

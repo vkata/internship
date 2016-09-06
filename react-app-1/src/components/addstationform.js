@@ -1,9 +1,10 @@
 import React from 'react';
-import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Pager} from 'react-bootstrap';
 import wsRepository from '../core/repositories/wsrepository';
 import WeatherStation from '../weatherstation'
 import userRepository from '../core/repositories/userrepository';
 import coordValidator from '../coordvalidator';
+import session from '../core/session/session'
 
 class AddStationForm extends React.Component {
   constructor(props) {
@@ -70,16 +71,22 @@ class AddStationForm extends React.Component {
      }
 
     return (
-      <form>
+      <form id="addstation">
+      <Pager>
+      <Pager.Item>
         <FormGroup
           controlId="user"
         >
-          <ControlLabel> Username of the creator: </ControlLabel>
-          <FormControl componentClass="select" placeholder="select">
+          <ControlLabel> Username of the creator: {session.getCurrentUser()}</ControlLabel>
+          {/* <FormControl componentClass="select" placeholder="select">
             {list}
-          </FormControl>
+          </FormControl> */}
           {/* <UserSelect onChange={this.handleChange}/> */}
-          <HelpBlock> </HelpBlock>
+          <FormControl
+            type="text"
+            value={session.getCurrentUser()}
+            disabled
+          />
         </FormGroup>
 
         <FormGroup
@@ -127,6 +134,8 @@ class AddStationForm extends React.Component {
         </FormGroup>
 
         <Button bsStyle="primary" onClick={this.handleAdd}>Save</Button>
+      </Pager.Item>
+      </Pager>
       </form>
     );
   }

@@ -44,9 +44,9 @@ class PersonValidator {
    }
 
    validate(user, fullname, password, email, gender) {
-     if (this.checkUsername(user) && this.checkFullname(fullname)
-      && this.checkEmail(email) && this.checkPassword(password)
-        && this.checkGender(gender)) {
+     if (this.checkUsername(user)=='success' && this.checkFullname(fullname)=='success'
+      && this.checkEmail(email)=='success' && this.checkPassword(password)=='success'
+        && this.checkGender(gender)=='success') {
           return true;
         }
      else return false;

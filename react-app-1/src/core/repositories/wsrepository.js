@@ -26,8 +26,11 @@ class WSRepository {
 
  getDataForPageNr(pageNr, elemNr) {
    let listToReturn = [];
-   for (let i = (pageNr-1) * elemNr; i < pageNr * elemNr; i++) {
+   let i = (pageNr-1) * elemNr;
+   while (i < pageNr * elemNr && i < this.list.length) {
+    //  console.log(i);
      listToReturn.push(this.list[i]);
+     i++;
    }
    return listToReturn;
  }
@@ -48,7 +51,6 @@ class WSRepository {
  getStationByName(name) {
    for (let i = 0; i<this.list.length; i++) {
      if (this.list[i].getName() == name) {
-      //  console.log("getting by name: " +this.list[i].getName());
        return this.list[i];
      }
    }

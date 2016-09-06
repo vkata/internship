@@ -1,4 +1,4 @@
- // var bbt = require('beebotte');
+// var bbt = require('beebotte');
  import Person from '../../person'
 
 class UserRepository {
@@ -19,7 +19,16 @@ class UserRepository {
   }
 
   login(username, password) {
+    if (username == "" || password == "")
+      return false;
     console.log(username + " is trying to log in with password: " + password);
+    for (let i = 0; i < this.list.length; i++) {
+      if (this.list[i].getUsername() == username && this.list[i].getPassword() == password) {
+        console.log(this.list[i]);
+        return true;
+      }
+    }
+    return false;
   }
 
   listAllUsers() {
@@ -58,6 +67,22 @@ class UserRepository {
       }
     }
     return res;
+  }
+
+  updateUser(user, newName, newMail, newPassword, newGender) {
+    let i = 0;
+    for (let i = 0; i<this.list.length; i++) {
+      if (this.list[i].getUsername() == user) {
+        console.log("before update: " + this.list[i]);
+        this.list[i].setFullname(newName);
+        this.list[i].setEmail(newMail);
+        this.list[i].setPassword(newPassword);
+        this.list[i].setGender(newGender);
+        console.log("after update: " + this.list[i]);
+        return true;
+      }
+    }
+    return false;
   }
 }
 
