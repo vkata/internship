@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom'
 import ReactHighcharts from 'react-highcharts'
 import Map from './map'
 import WSPagination from './wspagination'
+import Charts from './charts'
 
 let config = {
   title: {
@@ -29,7 +30,8 @@ class WsList extends React.Component {
        lat: 46.317399,
        lng: 24.745900,
        list: wsRepository.getDataForPageNr(1, 8),
-       page: 1
+       page: 1,
+       title: ""
      }
 
      this.wsList = wsRepository.listAllStations();
@@ -107,6 +109,7 @@ class WsList extends React.Component {
        config2: config2,
        lat: lat,
        lng: lng,
+       title: e.target.id
      });
 
      this.getSelectedPart(this.state.page);
@@ -123,6 +126,8 @@ class WsList extends React.Component {
 
    render() {
 
+     console.log("wslist: " + this.state.lat + "  " + this.state.lng);
+
      let wsList = [];
 
       for (let i = 0; i < this.state.list.length; i++) {
@@ -138,35 +143,29 @@ class WsList extends React.Component {
         <br/>
         <Grid>
           <Row>
-
-          <Col sm={6} md={3}>
-            <Button onClick={this.populate}> Populate stations </Button>
-            <ListGroup>
-              {wsList}
-            </ListGroup>
-
-          </Col>
-          <Col sm={6} md={9}>
-            <ReactHighcharts config={config} ref="chart"></ReactHighcharts>
-          </Col>
-          </Row>
-          <Row>
-          <Col sm={6} md={3}>
-            <WSPagination handle={this.setPage}/>
-          </Col>
-          <Col sm={6} md={9}>
-            <br/>
-            <ReactHighcharts config={config2} ref="chart"></ReactHighcharts>
-
-          </Col>
+            <Col sm={6} md={3}>
+              <Button onClick={this.populate}> Populate stations </Button>
+              <ListGroup>
+                {wsList}
+              </ListGroup>
+            </Col>
+            <Col sm={6} md={9}>
+              <Map lat={this.state.lat} lng={this.state.lng} title={this.state.title}/>
+            </Col>
           </Row>
           <Row>
             <Col sm={6} md={3}>
-
+              <WSPagination handle={this.setPage}/>
             </Col>
+
+          </Row>
+          <Row>
+            <Col sm={6} md={3}>
+            
+            </Col>
+            <br/>
             <Col sm={6} md={9}>
-              <br/>
-              <Map lat={this.state.lat} lng={this.state.lng}/>
+              <Charts config={this.state.config} config2={this.state.config2}/>
             </Col>
           </Row>
         </Grid>

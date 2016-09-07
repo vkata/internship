@@ -59,6 +59,7 @@ class BootstrapForm extends React.Component {
           let p = new Person(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender);
           console.log("save user");
           userRepository.save(p);
+          alert("Signing up was successful!");
           this.setState({
             password2: ''
           });
@@ -96,7 +97,8 @@ class BootstrapForm extends React.Component {
         if (personValidator.validate(this.props.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
         {
           console.log("update user");
-          userRepository.updateUser(this.props.user, this.state.fullname, this.state.email, this.state.password, this.state.gender)
+          userRepository.updateUser(this.props.user, this.state.fullname, this.state.email, this.state.password, this.state.gender);
+          alert("Updating your data was successful!");
         }
       }
     }

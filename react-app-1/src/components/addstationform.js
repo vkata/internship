@@ -44,6 +44,7 @@ class AddStationForm extends React.Component {
   handleAdd() {
       let ws = new WeatherStation(this.state.user, this.state.station, this.state.lat, this.state.lng);
       wsRepository.add(ws);
+      alert("Adding new weather station was successful!");
       this.setState({
         user: ''
       });

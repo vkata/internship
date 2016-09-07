@@ -12,8 +12,10 @@ class Map extends React.Component {
     this.state = {
       lat: this.props.lat,
       lng: this.props.lng,
-      zoom: 6
+      //zoom: 6
     }
+
+    this.title = this.props.title;
   }
 
   componentDidMount() {
@@ -26,17 +28,18 @@ class Map extends React.Component {
     this.marker = new google.maps.Marker({
           position: START,
           map: this.map,
-          title: 'I\'m here!'
+          title: this.title
         });
   }
-
+  /**
+   *
+   */
   componentWillReceiveProps(nextProps) {
     this.setState({
       lat: parseFloat(nextProps.lat),
       lng: parseFloat(nextProps.lng)
     });
 
-    // console.log("newstate: " + typeof(this.state.lat));
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state,
       zoom: 6
@@ -45,14 +48,17 @@ class Map extends React.Component {
     this.marker = new google.maps.Marker({
           position: this.state,
           map: this.map,
-          title: 'I\'m here!'
+          title: this.title
         });
     this.map.setCenter(this.marker.getPosition());
   }
 
   render() {
+
+    console.log("map: " + this.state.lat + "  " + this.state.lng);
+
     const mapStyle = {
-      height: 300,
+      height: 400,
       border: '1px solid black'
     };
 

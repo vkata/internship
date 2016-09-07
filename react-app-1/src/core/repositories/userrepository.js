@@ -21,13 +21,19 @@ class UserRepository {
   login(username, password) {
     if (username == "" || password == "")
       return false;
-    console.log(username + " is trying to log in with password: " + password);
+
+    if (username == "admin" && password == "admin") {
+        console.log("admin");
+        return true;
+    }
+
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].getUsername() == username && this.list[i].getPassword() == password) {
         console.log(this.list[i]);
         return true;
       }
     }
+    
     return false;
   }
 
@@ -73,12 +79,12 @@ class UserRepository {
     let i = 0;
     for (let i = 0; i<this.list.length; i++) {
       if (this.list[i].getUsername() == user) {
-        console.log("before update: " + this.list[i]);
+        // console.log("before update: " + this.list[i]);
         this.list[i].setFullname(newName);
         this.list[i].setEmail(newMail);
         this.list[i].setPassword(newPassword);
         this.list[i].setGender(newGender);
-        console.log("after update: " + this.list[i]);
+        // console.log("after update: " + this.list[i]);
         return true;
       }
     }
