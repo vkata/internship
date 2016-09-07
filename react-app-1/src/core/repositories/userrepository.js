@@ -1,21 +1,13 @@
-// var bbt = require('beebotte');
  import Person from '../../person'
 
 class UserRepository {
 
   constructor() {
     this.list = [];
-      //  this.bclient = new bbt.Connector({apiKey: '1e60c10e31b1623ae845c9cae508bed0',
-        //  secretKey: 'ac0a8cea8d9dc14480e9a20520496ec46e0028826aa188a9043033bfdc076338'});
   }
 
   save(user) {
     this.list.push(user);
-    // this.bclient.write(
-    //   {channel: 'users', resource: 'username', data: username},
-    //   function(err, res) {
-    //     if (err) console.log(err);
-    //   });
   }
 
   login(username, password) {
@@ -33,7 +25,7 @@ class UserRepository {
         return true;
       }
     }
-    
+
     return false;
   }
 
@@ -79,12 +71,10 @@ class UserRepository {
     let i = 0;
     for (let i = 0; i<this.list.length; i++) {
       if (this.list[i].getUsername() == user) {
-        // console.log("before update: " + this.list[i]);
         this.list[i].setFullname(newName);
         this.list[i].setEmail(newMail);
         this.list[i].setPassword(newPassword);
         this.list[i].setGender(newGender);
-        // console.log("after update: " + this.list[i]);
         return true;
       }
     }

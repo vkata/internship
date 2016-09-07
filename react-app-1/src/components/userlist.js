@@ -33,7 +33,6 @@ class UserList extends React.Component {
        this.setState({
          find: name.target.value
        });
-      //  console.log(name.target.value);
 
        this.setState({
          userList: userRepository.findByName(name.target.value)
@@ -75,7 +74,6 @@ class UserList extends React.Component {
             </ListGroupItem>
         );
       }
-      // console.log(uList);
 
       return (
         <div id="userlist">

@@ -58,7 +58,6 @@ render() {
       <Route path="about" component={About} />
 
       <Route path="inbox" component={Inbox}>
-        {/* Redirect /inbox/messages/:id to /messages/:id */}
         <Redirect from="messages/:id" to="/messages/:id" />
       </Route>
 

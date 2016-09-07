@@ -26,7 +26,6 @@ class StationInfo extends React.Component {
     };
 
     this.close = this.close.bind(this);
-    // this.open = this.open.bind(this);
     this.getConfig = this.getConfig.bind(this);
   }
 
@@ -92,25 +91,6 @@ class StationInfo extends React.Component {
       config2: config2
     }
   }
-
-  // open() {
-  //   // this.setState({
-  //   //   showModal: true
-  //   // });
-  // }
-
-  // componentWillMount() {
-  //     // this.setState({
-  //     //   showModal: this.props.show
-  //     // });
-  // }
-  //
-  // componentWillReceiveProps(nextProps) {
-  //   // this.setState({
-  //   //   showModal: nextProps.show,
-  //   //   station: nextProps.station
-  //   // });
-  // }
 
   render() {
 

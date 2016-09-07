@@ -61,7 +61,6 @@ class BootstrapLoginForm extends React.Component {
       <Form>
         <FormGroup
           controlId="user"
-          // validationState={personValidator.checkUsername(this.state.user)}
         >
           <ControlLabel> Username: </ControlLabel>
           <FormControl
@@ -74,7 +73,6 @@ class BootstrapLoginForm extends React.Component {
 
         <FormGroup
           controlId="password"
-          // validationState={personValidator.checkPassword(this.state.password)}
         >
           <ControlLabel> Password: </ControlLabel>
           <FormControl

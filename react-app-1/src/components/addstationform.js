@@ -79,10 +79,6 @@ class AddStationForm extends React.Component {
           controlId="user"
         >
           <ControlLabel> Username of the creator: {session.getCurrentUser()}</ControlLabel>
-          {/* <FormControl componentClass="select" placeholder="select">
-            {list}
-          </FormControl> */}
-          {/* <UserSelect onChange={this.handleChange}/> */}
           <FormControl
             type="text"
             value={session.getCurrentUser()}

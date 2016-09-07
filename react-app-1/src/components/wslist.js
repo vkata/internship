@@ -1,7 +1,6 @@
 import React from 'react';
 import wsRepository from '../core/repositories/wsrepository';
 import {ListGroup, ListGroupItem, Grid, Col, Row, Button} from 'react-bootstrap'
-import Highlight from 'react-highlight'
 import ReactDOM from 'react-dom'
 import ReactHighcharts from 'react-highcharts'
 import Map from './map'
@@ -161,7 +160,7 @@ class WsList extends React.Component {
           </Row>
           <Row>
             <Col sm={6} md={3}>
-            
+
             </Col>
             <br/>
             <Col sm={6} md={9}>

@@ -1,7 +1,6 @@
 import React from 'react';
 import wsRepository from '../core/repositories/wsrepository';
 import {ListGroup, ListGroupItem, Grid, Col, Row, Button} from 'react-bootstrap'
-import Highlight from 'react-highlight'
 import ReactDOM from 'react-dom'
 import ReactHighcharts from 'react-highcharts'
 import Map from './map'
@@ -18,10 +17,10 @@ class Charts extends React.Component {
      }
    }
 
-   componentWillReceiveProps() {
+   componentWillReceiveProps(nextProps) {
      this.state = {
-       config: this.props.config,
-       config2: this.props.config2,
+       config: nextProps.config,
+       config2: nextProps.config2,
      }
    }
 
