@@ -22,6 +22,9 @@ class BootstrapForm extends React.Component {
       this.handleSave = this.handleSave.bind(this);
   }
 
+  /**
+   * depending on the id of the target element, the values are saved in the state
+   */
   handleChange(e) {
     if (e.target.id == "user") {
       this.setState({
@@ -50,12 +53,24 @@ class BootstrapForm extends React.Component {
     }
   }
 
+ /**
+  * when we click on the Save button the values saved in the state are
+  * validated
+  * if the form is used for registration -> new user is saved in the repository
+  * else if the form is used for updating data -> element in the repo is updated
+  */
   handleSave() {
     if (this.props.user == "") {
+      /**
+       * firstly we check if the two passwords match or not, if not ->
+       * we don't need to save nor to update
+       */
       if (this.state.password == this.state.password2) {
         if (personValidator.validate(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))
         {
-          //if it is a new user we have to save it
+          /**
+           * new person -> save
+           */
           let p = new Person(this.state.user, this.state.fullname, this.state.password, this.state.email, this.state.gender);
           console.log("save user");
           userRepository.save(p);
@@ -91,7 +106,9 @@ class BootstrapForm extends React.Component {
         alert("Passwords do not match!");
       }
     }
-    //if it is an existing user we have to update user
+    /**
+     * existing person -> update
+     */
     else {
       if (this.state.password == this.state.password2) {
         if (personValidator.validate(this.props.user, this.state.fullname, this.state.password, this.state.email, this.state.gender))

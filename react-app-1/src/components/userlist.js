@@ -22,6 +22,9 @@ class UserList extends React.Component {
      this.searchUser = this.searchUser.bind(this);
    }
 
+   /**
+    * filtering by username - findByName method from the repo
+    */
    searchUser(name) {
      if (name.target.value == "") {
        this.setState({
@@ -47,6 +50,10 @@ class UserList extends React.Component {
      this.getSelectedPart(p);
    }
 
+   /**
+    * clicking on the Populate button -> filling the repo with random users
+    * saving this list in state
+    */
    onClick() {
       userRepository.populate();
 
@@ -56,6 +63,12 @@ class UserList extends React.Component {
       this.getSelectedPart(1);
    }
 
+   /**
+    * this is a function for selecting the part of the whole list, which should
+    * appear on the page with an index of "p"
+    *
+    * the result (a list) is then stored in the state
+    */
    getSelectedPart(p) {
 
      this.setState({
@@ -67,6 +80,11 @@ class UserList extends React.Component {
    render() {
      let uList = [];
 
+     /**
+      *   we iterate through the list of the users and create a ListGroupItem
+      *   element for each
+      *   the rendered ListGroup will contain this list of elements
+      */
       for (let i = 0; i < this.state.userList.length; i++) {
         uList.push(
             <ListGroupItem key={i}>

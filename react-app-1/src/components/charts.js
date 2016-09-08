@@ -17,6 +17,10 @@ class Charts extends React.Component {
      }
    }
 
+   /**
+    * using the configs received by props -> rendering ReactHighCharts
+    * for temperature and humidity
+    */
    componentWillReceiveProps(nextProps) {
      this.state = {
        config: nextProps.config,

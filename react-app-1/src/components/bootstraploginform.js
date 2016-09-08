@@ -20,6 +20,9 @@ class BootstrapLoginForm extends React.Component {
       this.handleLogin = this.handleLogin.bind(this);
   }
 
+  /**
+   * saving input data to the state depending on it's id
+   */
   handleChange(e) {
     if (e.target.id == "user") {
       this.setState({
@@ -32,6 +35,12 @@ class BootstrapLoginForm extends React.Component {
     }
   }
 
+  /**
+   * when the user clicks on the login button -> checking data with login
+   * function -> go to dashboard if it is ok
+   *          -> alert user, stay and set initial values to username and password and stay
+   *            on the login page
+   */
   handleLogin() {
        if (userRepository.login(this.state.user, this.state.password)) {
           session.setCurrentUser(this.state.user);

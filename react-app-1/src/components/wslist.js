@@ -41,6 +41,9 @@ class WsList extends React.Component {
      this.setPage = this.setPage.bind(this);
    }
 
+   /**
+    * saving the page number in the state at pagination onclick
+    */
    setPage(p) {
      this.setState({
        page: p
@@ -48,6 +51,9 @@ class WsList extends React.Component {
      this.getSelectedPart(p);
    }
 
+   /**
+    * getting the selected part of the list from the repo - for the requested page
+    */
    getSelectedPart(p) {
 
      this.setState({
@@ -55,6 +61,10 @@ class WsList extends React.Component {
      });
    }
 
+   /**
+    * by clicking on the name of the station from the list, we set the configs
+    * for the charts and map
+    */
    onClick(e) {
 
      config = {
@@ -124,9 +134,6 @@ class WsList extends React.Component {
    }
 
    render() {
-
-     console.log("wslist: " + this.state.lat + "  " + this.state.lng);
-
      let wsList = [];
 
       for (let i = 0; i < this.state.list.length; i++) {

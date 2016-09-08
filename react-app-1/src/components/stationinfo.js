@@ -15,6 +15,10 @@ let config2 = {
         }
 };
 
+/**
+ * this is a class for the modals which contain charts of the temperature and humidity
+ */
+
 class StationInfo extends React.Component {
 
   constructor(props) {
@@ -29,10 +33,17 @@ class StationInfo extends React.Component {
     this.getConfig = this.getConfig.bind(this);
   }
 
+  /**
+   * modal -> onHide event -> method is defined in the parent component
+   */
   close() {
     this.props.onClose();
   }
 
+  /**
+   * setting the configurations for the charts, we get the data from the repo
+   * -> return an object containing config and config2
+   */
   getConfig(name) {
 
     if (!name) {
@@ -41,7 +52,6 @@ class StationInfo extends React.Component {
         config2: {}
       };
     }
-    console.log(name);
     config = {
       title: {
                 text: "Temperature at " + name
@@ -93,9 +103,6 @@ class StationInfo extends React.Component {
   }
 
   render() {
-
-    console.log(this.props.station);
-    console.log(this.props.show);
 
     var m = this.getConfig(this.props.station);
 

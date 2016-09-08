@@ -6,29 +6,48 @@ class WSRepository {
    this.list = [];
  }
 
+/**
+ * pushing a new station to the list
+ */
  add(station) {
      this.list.push(station);
  }
 
+/**
+ * returning the list of the stations
+ */
  listAllStations() {
    return this.list;
  }
 
+/**
+ * the list of the stations is set to an empty list
+ *  -> deleting
+ */
  deleteAllStations() {
    this.list = [];
  }
 
+/**
+ * getting a part of the original list -> it's length is elemNr,
+ * the first element will be the element with index (pageNr-1) * elemNr
+ * from the original list
+ *
+ * this function is used for pagination
+ */
  getDataForPageNr(pageNr, elemNr) {
    let listToReturn = [];
    let i = (pageNr-1) * elemNr;
    while (i < pageNr * elemNr && i < this.list.length) {
-    //  console.log(i);
      listToReturn.push(this.list[i]);
      i++;
    }
    return listToReturn;
  }
 
+/**
+ * filling the list with 100 stations with random coordinates
+ */
  populate() {
    for (let i = 0; i<100; i++) {
      let user = "user" + i;
@@ -42,6 +61,9 @@ class WSRepository {
    }
  }
 
+/**
+ * getting the station from the list with the given name
+ */
  getStationByName(name) {
    for (let i = 0; i<this.list.length; i++) {
      if (this.list[i].getName() == name) {
@@ -50,6 +72,9 @@ class WSRepository {
    }
  }
 
+/**
+ * returns the rength of the list
+ */
  howMany() {
    return this.list.length;
  }

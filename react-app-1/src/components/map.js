@@ -1,5 +1,8 @@
 import React from 'react'
 
+/**
+ * starting coordinates (position) of the map
+ */
 const START = {
   lat: 46.317399,
   lng: 24.745900
@@ -57,7 +60,7 @@ class Map extends React.Component {
   }
 
   render() {
-    // 
+    //
     // this.map = new google.maps.Map(this.refs.map, {
     //   center: this.state,
     //   zoom: 6

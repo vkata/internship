@@ -3,9 +3,7 @@ import Person from '../src/core/model/person';
 import personValidator from '../src/core/model/personvalidator';
 
 describe("Personvalidator", function() {
-//  let pers = new Person('vkata', 'Vizi Kata','asd','vk@gmail.com','female');
-//  personValidator(pers);
-
+  
   it("should not be undefined after initialization", function() {
     expect(personValidator).toNotBe(undefined);
   });

@@ -24,6 +24,11 @@ class ListPagination extends React.Component {
 
   render() {
 
+    /**
+     * we need the number of the elements in the repositiry
+     * dividing it by the elements per one page -> we get the number uof the pages
+     * we add one more page for the items if there are any left
+     */
     let itemsNr = userRepository.howMany();
     let pagesNr = Math.floor(userRepository.howMany() /11);
     if (userRepository.howMany() % 11 != 0) {

@@ -22,6 +22,11 @@ class Settings extends React.Component {
       }
   }
 
+  /**
+   * for this we use the same form as we used for the registration,
+   * we set the user props -> contains the name of the user which is currently
+   * logged in
+   */
   render() {
 
     if (session.getCurrentUser() == "")

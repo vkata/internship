@@ -20,8 +20,10 @@ class AddStationForm extends React.Component {
       this.handleAdd = this.handleAdd.bind(this);
   }
 
+  /**
+   * changes on the inputs are saved into the state
+   */
   handleChange(e) {
-    console.log(e.target.id);
     if (e.target.id == "user") {
       this.setState({
         user: e.target.value
@@ -41,6 +43,10 @@ class AddStationForm extends React.Component {
     }
   }
 
+  /**
+   * clicking on the Save button -> adding station to the wsrepository
+   * after adding we set the state to an initial value
+   */
   handleAdd() {
       let ws = new WeatherStation(this.state.user, this.state.station, this.state.lat, this.state.lng);
       wsRepository.add(ws);
@@ -52,10 +58,10 @@ class AddStationForm extends React.Component {
         station: ''
       });
       this.setState({
-        lat: 0
+        lat: ''
       });
       this.setState({
-        lng: 0
+        lng: ''
       })
   }
 

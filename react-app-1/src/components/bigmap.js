@@ -32,6 +32,9 @@ class BigMap extends React.Component {
     this.allStations();
   }
 
+  /**
+   * listing all stations, creaating a marker on the map for each
+   */
   allStations() {
 
     let list = wsRepository.listAllStations();
@@ -42,6 +45,9 @@ class BigMap extends React.Component {
         lng: parseFloat(list[i].getLng())
       };
 
+      /**
+       * adding marker for the i-th station
+       */
       this.marker[i] = new google.maps.Marker({
             position: pos,
             map: this.bigmap,
@@ -52,6 +58,9 @@ class BigMap extends React.Component {
 
       let self = this;
 
+      /**
+       * adding listener to the marker -> onClick -> modal appears with charts
+       */
       this.marker[i].addListener('click', () => {
         console.log("the modal should appear for " + list[i].getName());
         this.setState({
@@ -71,6 +80,9 @@ class BigMap extends React.Component {
     this.allStations();
   }
 
+  /**
+   * closing the modal with the charts
+   */
   onClose() {
     this.setState({
       show: false

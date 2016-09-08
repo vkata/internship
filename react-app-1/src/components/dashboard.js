@@ -12,9 +12,15 @@ import session from '../core/session/session'
 class Dashboard extends React.Component {
   render() {
 
+    /**
+     * if there is no user logged in, go back to the login page
+     */
     if (session.getCurrentUser() == "")
         browserHistory.push('/login');
 
+      /**
+       * rendering elements of the dashboard
+       */
     return (
     <div id="main" >
       <p> User: {session.getCurrentUser()} </p>

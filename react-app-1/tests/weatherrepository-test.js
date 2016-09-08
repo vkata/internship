@@ -4,23 +4,24 @@ import WeatherStation from '../src/core/model/weatherstation';
 
 describe("Weather station repository", function() {
 
+  beforeEach(function() {
+    wsRepository.deleteAllStations();
+  });
+
   it("length should be 0 after initializatioh", function() {
     expect(wsRepository.howMany()).toBe(0);
   });
 
   it("length should be 100 after populating list", function() {
-    wsRepository.deleteAllStations();
     wsRepository.populate();
     expect(wsRepository.howMany()).toBe(100);
   });
 
   it("length should be 0 after deleting all of the elements of the list", function() {
-    wsRepository.deleteAllStations();
     expect(wsRepository.howMany()).toBe(0);
   });
 
   it("length should be 2 after adding 2 stations", function() {
-    wsRepository.deleteAllStations();
     let ws1 = new WeatherStation('vkata', 'station#1', 45.124, 45.124);
     let ws2 = new WeatherStation('user', 'station#2', 34.124, 61.124);
 
@@ -31,7 +32,6 @@ describe("Weather station repository", function() {
   });
 
   it("should return a list when calling listAllStations()", function() {
-    wsRepository.deleteAllStations();
     let ws1 = new WeatherStation('vkata', 'station#1', 45.124, 45.124);
     let ws2 = new WeatherStation('user', 'station#2', 34.124, 61.124);
 
@@ -44,7 +44,6 @@ describe("Weather station repository", function() {
   });
 
   it("should return a station object if we are getting a station by name", function() {
-    wsRepository.deleteAllStations();
     let ws3 = new WeatherStation('newuser', 'station#3', 34.124, 12.124);
     wsRepository.add(ws3);
 
@@ -55,7 +54,6 @@ describe("Weather station repository", function() {
   });
 
   it("should return a list with length of 2 after getting elements for the first page (page = 2 elements)", function() {
-    wsRepository.deleteAllStations();
     let ws4 = new WeatherStation('vkata', 'station#4', 48.194, 25.124);
     let ws5 = new WeatherStation('user_user', 'station#5', 37.124, 68.138);
 
