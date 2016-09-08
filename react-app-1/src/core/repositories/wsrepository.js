@@ -35,11 +35,12 @@ class WSRepository {
  *
  * this function is used for pagination
  */
- getDataForPageNr(pageNr, elemNr) {
+ getDataForPageNr(pageNr, elemNr, currentList) {
+
    let listToReturn = [];
    let i = (pageNr-1) * elemNr;
-   while (i < pageNr * elemNr && i < this.list.length) {
-     listToReturn.push(this.list[i]);
+   while (i < pageNr * elemNr && i < currentList.length) {
+     listToReturn.push(currentList[i]);
      i++;
    }
    return listToReturn;
@@ -71,6 +72,20 @@ class WSRepository {
      }
    }
  }
+/**
+ * finding weather stations with names containing chars as a substring
+ * returns a list of stations
+ */
+ findByName(chars) {
+   let res = [];
+   for (let i = 0; i<this.list.length; i++) {
+     if (this.list[i].getName().indexOf(chars) > -1) {
+       res.push(this.list[i]);
+     }
+   }
+   return res;
+ }
+
 
 /**
  * returns the rength of the list

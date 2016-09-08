@@ -7,9 +7,23 @@ class WSPagination extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePage: 1
+      activePage: 1,
+      find: ""
     }
     this.handleSelect = this.handleSelect.bind(this);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    this.setState({
+      find: nextProps.find
+    });
+    return true;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      find: nextProps.find
+    });
   }
 
   handleSelect(eventKey) {
@@ -23,9 +37,15 @@ class WSPagination extends React.Component {
 
   render() {
 
-    let itemsNr = wsRepository.howMany();
-    let pagesNr = Math.floor(wsRepository.howMany() / 8);
-    if (wsRepository.howMany() % 8 > 0) {
+    // let itemsNr = wsRepository.howMany();
+    // let pagesNr = Math.floor(wsRepository.howMany() / 6);
+    // if (wsRepository.howMany() % 6 > 0) {
+    //   pagesNr++;
+    // }
+
+    let itemsNr = wsRepository.findByName(this.state.find).length;
+    let pagesNr = Math.floor(itemsNr / 6);
+    if (itemsNr % 6 > 0) {
       pagesNr++;
     }
 

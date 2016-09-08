@@ -27,6 +27,15 @@ class Map extends React.Component {
     });
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    this.setState({
+      lat: nextProps.lat,
+      lng: nextProps.lng
+    });
+
+    return true;
+  }
+
   componentDidMount() {
     this.map = new google.maps.Map(this.refs.map, {
       center: START,

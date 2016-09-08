@@ -1,6 +1,6 @@
 import React from 'react';
 import wsRepository from '../core/repositories/wsrepository';
-import {ListGroup, ListGroupItem, Grid, Col, Row, Button} from 'react-bootstrap'
+import {ListGroup, ListGroupItem, Grid, Col, Row, Button, FormGroup, ControlLabel, FormControl} from 'react-bootstrap'
 import ReactDOM from 'react-dom'
 import ReactHighcharts from 'react-highcharts'
 import Map from './map'
@@ -28,15 +28,16 @@ class WsList extends React.Component {
        config2: config2,
        lat: 46.317399,
        lng: 24.745900,
-       list: wsRepository.getDataForPageNr(1, 8),
+       list: wsRepository.getDataForPageNr(1, 6, wsRepository.listAllStations),
        page: 1,
-       title: ""
+       title: "",
+       find: ""
      }
 
      this.wsList = wsRepository.listAllStations();
      this.onClick = this.onClick.bind(this);
      this.populate = this.populate.bind(this);
-
+     this.filterStation = this.filterStation.bind(this);
      this.getSelectedPart = this.getSelectedPart.bind(this);
      this.setPage = this.setPage.bind(this);
    }
@@ -56,9 +57,16 @@ class WsList extends React.Component {
     */
    getSelectedPart(p) {
 
-     this.setState({
-       list: wsRepository.getDataForPageNr(p, 8)
-     });
+     if (this.state.find == "") {
+       this.setState({
+         list: wsRepository.getDataForPageNr(p, 6, wsRepository.listAllStations())
+       });
+     }
+     else {
+       this.setState({
+         list: wsRepository.getDataForPageNr(p, 6, wsRepository.findByName(this.state.find))
+       });
+     }
    }
 
    /**
@@ -118,7 +126,7 @@ class WsList extends React.Component {
        config2: config2,
        lat: lat,
        lng: lng,
-       title: e.target.id
+       title: e.target.id,
      });
 
      this.getSelectedPart(this.state.page);
@@ -131,6 +139,25 @@ class WsList extends React.Component {
         list: wsRepository.listAllStations()
       });
       this.getSelectedPart(1);
+   }
+
+   filterStation(name) {
+
+     if (name.target.value == "") {
+       this.setState({
+         find: name.target.value,
+         page: 1
+       });
+       this.getSelectedPart(1);
+     }
+     else {
+       this.setState({
+         find: name.target.value,
+         list: wsRepository.findByName(name.target.value)
+       });
+
+       this.getSelectedPart(1);
+     }
    }
 
    render() {
@@ -151,6 +178,19 @@ class WsList extends React.Component {
           <Row>
             <Col sm={6} md={3}>
               <Button onClick={this.populate}> Populate stations </Button>
+              <FormGroup
+                controlId="find"
+                >
+                <ControlLabel>Find station: </ControlLabel>
+                <FormControl
+                  type="text"
+                  value={this.state.find}
+                  placeholder="name of the station"
+                  onChange={this.filterStation}
+                  />
+                <FormControl.Feedback />
+              </FormGroup>
+              <br/>
               <ListGroup>
                 {wsList}
               </ListGroup>
@@ -161,7 +201,7 @@ class WsList extends React.Component {
           </Row>
           <Row>
             <Col sm={6} md={3}>
-              <WSPagination handle={this.setPage}/>
+              <WSPagination handle={this.setPage} find={this.state.find}/>
             </Col>
 
           </Row>
