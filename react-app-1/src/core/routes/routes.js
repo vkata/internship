@@ -1,14 +1,14 @@
 import React from 'react';
 import {Router, IndexRoute, Provider, browserHistory, Route } from 'react-router';
-import App from '../App'
-import Dashboard from '../components/dashboard'
-import BootstrapForm from '../components/bootstrapform'
-import BootstrapLoginForm from '../components/bootstraploginform'
-import UserList from '../components/userlist'
-import AddStationForm from '../components/addstationform'
-import WsList from '../components/wslist'
-import BigMap from '../components/bigmap'
-import Settings from '../components/settings'
+import App from '../../App'
+import Dashboard from '../../components/dashboard'
+import BootstrapForm from '../../components/bootstrapform'
+import BootstrapLoginForm from '../../components/bootstraploginform'
+import UserList from '../../components/userlist'
+import AddStationForm from '../../components/addstationform'
+import WsList from '../../components/wslist'
+import BigMap from '../../components/bigmap'
+import Settings from '../../components/settings'
 
 const routes = (
       <Route component={App}>

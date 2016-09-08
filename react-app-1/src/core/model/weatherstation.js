@@ -25,6 +25,10 @@ class WeatherStation {
       this.temp.push(t);
     }
 
+    addHum(h) {
+      this.humidity.push(h);
+    }
+
     getTempList() {
       return this.temp;
     }

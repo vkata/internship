@@ -1,5 +1,3 @@
-//import Person from './person';
-
 class PersonValidator {
 
     checkUsername(userName) {

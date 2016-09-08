@@ -1,7 +1,7 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
 import wsRepository from '../core/repositories/wsrepository';
-import WeatherStation from '../weatherstation'
+import WeatherStation from '../core/model/weatherstation'
 
 class AddTempForm extends React.Component {
   constructor(props) {

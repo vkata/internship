@@ -57,7 +57,7 @@ class Map extends React.Component {
   }
 
   render() {
-
+    // 
     // this.map = new google.maps.Map(this.refs.map, {
     //   center: this.state,
     //   zoom: 6

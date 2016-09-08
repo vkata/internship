@@ -5,12 +5,6 @@ class Session {
     this.currentuser = "";
   }
 
-  isLoggedIn() {
-      if (this.currentuser != "")
-        return true
-      else return false;
-  }
-
   setCurrentUser(usr) {
     this.currentuser = usr;
   }

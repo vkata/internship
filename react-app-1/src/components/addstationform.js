@@ -1,9 +1,9 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Pager} from 'react-bootstrap';
 import wsRepository from '../core/repositories/wsrepository';
-import WeatherStation from '../weatherstation'
+import WeatherStation from '../core/model/weatherstation'
 import userRepository from '../core/repositories/userrepository';
-import coordValidator from '../coordvalidator';
+import coordValidator from '../core/model/coordvalidator';
 import session from '../core/session/session'
 
 class AddStationForm extends React.Component {

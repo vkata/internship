@@ -2,7 +2,7 @@ import React from 'react';
 import userRepository from '../core/repositories/userrepository';
 import {ListGroup, ListGroupItem} from 'react-bootstrap'
 import ListPagination from './pagination'
-import personValidator from '../personvalidator';
+import personValidator from '../core/model/personvalidator';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert} from 'react-bootstrap';
 
 class UserList extends React.Component {

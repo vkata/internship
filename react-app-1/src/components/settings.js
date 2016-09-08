@@ -1,8 +1,8 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Nav, NavItem, Row, Col, Tabs, Tab} from 'react-bootstrap';
-import personValidator from '../personvalidator';
+import personValidator from '../core/model/personvalidator';
 import userRepository from '../core/repositories/userrepository';
-import Person from '../person'
+import Person from '../core/model/person'
 import BootstrapForm from '../components/bootstrapform'
 import session from '../core/session/session'
 import { Router, Route, Link, browserHistory } from 'react-router'
@@ -35,7 +35,7 @@ class Settings extends React.Component {
         </div>
         <p> Change your personal data </p>
         <BootstrapForm user={session.getCurrentUser()} />
-        
+
       </div>
     );
   }

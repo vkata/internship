@@ -1,4 +1,4 @@
-import WeatherStation from '../../weatherstation'
+import WeatherStation from '../model/weatherstation'
 
 class WSRepository {
 
@@ -12,6 +12,10 @@ class WSRepository {
 
  listAllStations() {
    return this.list;
+ }
+
+ deleteAllStations() {
+   this.list = [];
  }
 
  getDataForPageNr(pageNr, elemNr) {

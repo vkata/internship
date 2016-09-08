@@ -1,8 +1,8 @@
 import React from 'react';
 import {FormGroup, ControlLabel, FormControl, HelpBlock, Button, Alert, Form, Col, Pager} from 'react-bootstrap';
-import personValidator from '../personvalidator';
+import personValidator from '../core/model/personvalidator';
 import userRepository from '../core/repositories/userrepository';
-import Person from '../person'
+import Person from '../core/model/person'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import session from '../core/session/session'
 

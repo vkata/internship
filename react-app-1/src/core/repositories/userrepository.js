@@ -1,4 +1,4 @@
- import Person from '../../person'
+ import Person from '../model/person'
 
 class UserRepository {
 
@@ -15,13 +15,11 @@ class UserRepository {
       return false;
 
     if (username == "admin" && password == "admin") {
-        console.log("admin");
         return true;
     }
 
     for (let i = 0; i < this.list.length; i++) {
       if (this.list[i].getUsername() == username && this.list[i].getPassword() == password) {
-        console.log(this.list[i]);
         return true;
       }
     }
@@ -31,6 +29,10 @@ class UserRepository {
 
   listAllUsers() {
     return this.list;
+  }
+
+  deleteAllUsers() {
+    this.list = [];
   }
 
   getDataForPageNr(pageNr, elemNr) {

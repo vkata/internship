@@ -8,11 +8,10 @@ import UserList from './components/userlist'
 import AddStationForm from './components/addstationform'
 import WsList from './components/wslist'
 import BigMap from './components/bigmap'
-import NewClass from './components/newcomponentforrouter'
 import Dashboard from './components/dashboard'
 import Router from 'react-router';
 import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
-import Routes from './core/routes'
+import Routes from './core/routes/routes'
 
 let App = React.createClass({
 

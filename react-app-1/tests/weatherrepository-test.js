@@ -1,41 +1,68 @@
 import expect from 'expect'
 import wsRepository from '../src/core/repositories/wsrepository'
-import WeatherStation from '../src/weatherstation';
+import WeatherStation from '../src/core/model/weatherstation';
 
+describe("Weather station repository", function() {
 
-describe("Weather station repository test", function() {
-
-  let ws1 = new WeatherStation('vkata', 'station#1', 45.124, 45.124);
-  let ws2 = new WeatherStation('user', 'station#2', 34.124, 61.124);
-
-  it("before adding a weather station length should be 0 - howMany", function() {
+  it("length should be 0 after initializatioh", function() {
     expect(wsRepository.howMany()).toBe(0);
   });
 
-  it("after adding a weather station length should be 1 - howMany, add", function() {
-    wsRepository.add(ws1);
-    expect(wsRepository.howMany()).toBe(1);
+  it("length should be 100 after populating list", function() {
+    wsRepository.deleteAllStations();
+    wsRepository.populate();
+    expect(wsRepository.howMany()).toBe(100);
   });
 
-  it("after adding a second weather station length should be 2 - howMany, add", function() {
+  it("length should be 0 after deleting all of the elements of the list", function() {
+    wsRepository.deleteAllStations();
+    expect(wsRepository.howMany()).toBe(0);
+  });
+
+  it("length should be 2 after adding 2 stations", function() {
+    wsRepository.deleteAllStations();
+    let ws1 = new WeatherStation('vkata', 'station#1', 45.124, 45.124);
+    let ws2 = new WeatherStation('user', 'station#2', 34.124, 61.124);
+
+    wsRepository.add(ws1);
     wsRepository.add(ws2);
+
     expect(wsRepository.howMany()).toBe(2);
   });
 
-  it("finding an existing weather station by name '#1' - getStationByName", function() {
-    expect(wsRepository.getStationByName('#1')).toNotBe([]);
+  it("should return a list when calling listAllStations()", function() {
+    wsRepository.deleteAllStations();
+    let ws1 = new WeatherStation('vkata', 'station#1', 45.124, 45.124);
+    let ws2 = new WeatherStation('user', 'station#2', 34.124, 61.124);
+
+    wsRepository.add(ws1);
+    wsRepository.add(ws2);
+
+    let list = wsRepository.listAllStations();
+
+    expect(list.length).toBe(2);
   });
 
-  it("finding an existing weather station by name 'stat' - getStationByName", function() {
-    expect(wsRepository.getStationByName('stat')).toNotBe([]);
+  it("should return a station object if we are getting a station by name", function() {
+    wsRepository.deleteAllStations();
+    let ws3 = new WeatherStation('newuser', 'station#3', 34.124, 12.124);
+    wsRepository.add(ws3);
+
+    //getting a station object as a result
+    let sttn = wsRepository.getStationByName('station#3');
+    //checking if we got the correct object by testing the name of the creator
+    expect(sttn.getCreator()).toBe('newuser');
   });
 
-  it("getting two elements of the list for the first page", function() {
+  it("should return a list with length of 2 after getting elements for the first page (page = 2 elements)", function() {
+    wsRepository.deleteAllStations();
+    let ws4 = new WeatherStation('vkata', 'station#4', 48.194, 25.124);
+    let ws5 = new WeatherStation('user_user', 'station#5', 37.124, 68.138);
+
+    wsRepository.add(ws4);
+    wsRepository.add(ws5);
+
     expect(wsRepository.getDataForPageNr(1, 2).length).toBe(2);
-  });
-
-  it("getting one element of the list for the first page", function() {
-    expect(wsRepository.getDataForPageNr(1, 1).length).toBe(1);
   });
 
 });

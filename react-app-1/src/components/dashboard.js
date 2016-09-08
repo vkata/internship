@@ -4,7 +4,6 @@ import UserList from './userlist'
 import AddStationForm from './addstationform'
 import WsList from './wslist'
 import BigMap from './bigmap'
-import NewClass from './newcomponentforrouter'
 import Settings from './settings'
 import { Router, Route, Link, browserHistory } from 'react-router'
 import { DefaultRoute, RouteHandler } from 'react-router';
