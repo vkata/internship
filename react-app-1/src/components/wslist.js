@@ -93,6 +93,7 @@ class WsList extends React.Component {
          data: []
        }]
      };
+
      config2 = {
        title: {
                  text: "Humidity at: " + e.target.id
@@ -207,7 +208,7 @@ class WsList extends React.Component {
           </Row>
           <Row>
             <Col sm={6} md={3}>
-
+            <p> Charts for the selected station: </p>
             </Col>
             <br/>
             <Col sm={6} md={9}>

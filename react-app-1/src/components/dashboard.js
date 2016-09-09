@@ -28,7 +28,7 @@ class Dashboard extends React.Component {
         <Link to="/settings"> Settings </Link>
         <Link to="/login"> Logout </Link>
       </div>
-    <Tabs defaultActiveKey={2} id="uncontrolled-tab">
+    <Tabs id="tab" defaultActiveKey={2} id="uncontrolled-tab">
       <Tab eventKey={1} title="Add Weather Station"><AddStationForm/></Tab>
       <Tab eventKey={2} title="List of Weather Stations"><WsList/></Tab>
       <Tab eventKey={3} title="Map with all Weather Stations"><BigMap/></Tab>

@@ -53,6 +53,20 @@ describe("Weather station repository", function() {
     expect(sttn.getCreator()).toBe('newuser');
   });
 
+  it("should return a station list if we are filtering by name", function() {
+    let ws3 = new WeatherStation('newuser', 'station#3', 34.124, 12.124);
+    let ws4 = new WeatherStation('vkata', 'station#4', 48.194, 25.124);
+    let ws5 = new WeatherStation('user_user', 'station#5', 37.124, 68.138);
+    wsRepository.add(ws3);
+    wsRepository.add(ws4);
+    wsRepository.add(ws5);
+
+    //getting a station object as a result
+    let filteredList = wsRepository.findByName('stat');
+    //checking if we got the correct object by testing the name of the creator
+    expect(filteredList.length).toBe(3);
+  });
+
   it("should return a list with length of 2 after getting elements for the first page (page = 2 elements)", function() {
     let ws4 = new WeatherStation('vkata', 'station#4', 48.194, 25.124);
     let ws5 = new WeatherStation('user_user', 'station#5', 37.124, 68.138);
@@ -60,7 +74,7 @@ describe("Weather station repository", function() {
     wsRepository.add(ws4);
     wsRepository.add(ws5);
 
-    expect(wsRepository.getDataForPageNr(1, 2).length).toBe(2);
+    expect(wsRepository.getDataForPageNr(1, 2, wsRepository.listAllStations()).length).toBe(2);
   });
 
 });

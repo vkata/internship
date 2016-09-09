@@ -2,9 +2,15 @@ body {
   background-color: #BDBDBD;
   background-image: url("img/weather.jpg");
   background-size:cover;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 #links {
   float: right;
   text-align: right;
+}
+
+a {
+  color: black;
 }

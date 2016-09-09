@@ -2,6 +2,9 @@ import React from 'react'
 import wsRepository from '../core/repositories/wsrepository';
 import {Button} from 'react-bootstrap'
 import StationInfo from './stationinfo'
+import session from '../core/session/session'
+import { Router, Route, Link, browserHistory } from 'react-router'
+
 
 const START = {
   lat: 46.317399,
@@ -90,6 +93,11 @@ class BigMap extends React.Component {
   }
 
   render() {
+    /**
+     * if there is no user logged in, go back to the login page
+     */
+    if (session.getCurrentUser() == "")
+        browserHistory.push('/login');
 
     const mapStyle = {
       height: 700,
