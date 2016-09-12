@@ -69,13 +69,19 @@ class Map extends React.Component {
   }
 
   render() {
-    //
-    // this.map = new google.maps.Map(this.refs.map, {
-    //   center: this.state,
-    //   zoom: 6
-    // });
 
-    // console.log("map: " + this.state.lat + "  " + this.state.lng);
+    if (this.map != undefined) {
+      this.map = new google.maps.Map(this.refs.map, {
+        center: this.state,
+        zoom: 6
+      });
+      this.marker = new google.maps.Marker({
+            position: this.state,
+            map: this.map,
+            title: this.title
+          });
+      this.map.setCenter(this.marker.getPosition());
+    }
 
     const mapStyle = {
       height: 400,
