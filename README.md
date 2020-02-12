@@ -1,3 +1,3 @@
 # react-app-1
 
-Describe react-app-1 here.
+very first react project, created while learning everything from the basics
